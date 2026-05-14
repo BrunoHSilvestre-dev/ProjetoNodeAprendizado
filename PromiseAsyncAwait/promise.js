@@ -16,18 +16,48 @@ function numeroAleatorio(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
 };
 
-esperaAi('Frase 1', numeroAleatorio(1, 3))
+// esperaAi('Frase 1', numeroAleatorio(1, 3))
+//     .then(resposta => {
+//         console.log(resposta);
+//         return esperaAi('Frase 2', numeroAleatorio(2, 4));
+//     })
+//     .then(resposta => {
+//         console.log(resposta);
+//         return esperaAi('Frase 3', numeroAleatorio(3, 5));
+//     })
+//     .then(resposta => {
+//         console.log(resposta);
+//     })
+//     .catch(e => {
+//         console.log('ERRO:', e);
+//     });  
+
+// promises = [
+//     'Frase 0',
+//     esperaAi('Frase 1', numeroAleatorio(1, 3)),
+//     esperaAi('Frase 2', numeroAleatorio(2, 4)),
+//     esperaAi('Frase 3', numeroAleatorio(3, 5)),
+//     'Frase 4'
+// ]
+
+// Promise.all(promises)
+//     .then(respostas => {
+//         console.log(respostas)
+//     })
+//     .catch(e => {
+//         console.log('ERRO:', e);
+//     });
+
+promises = [
+    esperaAi('Frase 1', numeroAleatorio(1, 3)),
+    esperaAi('Frase 2', numeroAleatorio(2, 4)),
+    esperaAi('Frase 3', numeroAleatorio(3, 5))
+]
+
+Promise.race(promises)
     .then(resposta => {
-        console.log(resposta);
-        return esperaAi('Frase 2', numeroAleatorio(2, 4));
-    })
-    .then(resposta => {
-        console.log(resposta);
-        return esperaAi('Frase 3', numeroAleatorio(3, 5));
-    })
-    .then(resposta => {
-        console.log(resposta);
+        console.log(resposta)
     })
     .catch(e => {
         console.log('ERRO:', e);
-    });  
+    }); 
